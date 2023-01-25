@@ -1,0 +1,7 @@
+<br><p>Tipo de Documento:   {{ person.get_kind_document_display }}</p>
+<br><p>Identificación:      {{ person.document }}</p>
+<br><p>Nombres:             {{ person.first_name }} {{ person.second_name }}</p>
+<br><p>Apellidos:           {{ person.last_name}} {{ person.last_name_second }}</p>
+<br><br>
+<p>Si encuentra un error en sus datos por favor acerquese al <a href="{% url  'salud' %}" target="none">punto de su localidad de la Secretar&iacute;a</a> para solicitar la actualización de los mismos</font></p>
+<br><br>

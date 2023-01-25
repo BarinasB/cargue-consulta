@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<div id="tl_content">
+    <div id="tl_Intleft">
+        {% if show_person_data %}
+        <br>Usted aparece en el registro para obtener la tarjeta tullave con el perfil de Discapacidad:<br>
+            <script>
+            function wrong() {
+              
+              document.getElementById('confirm_form').onsubmit = function() {
+                var txt = document.getElementById('id_confirm');
+                txt.value = "False";
+              };
+            };
+            </script>
+            <br><p>Tipo de Documento:   {{ person.get_kind_document_display }}</p>
+            <br><p>Identificación:      {{ person.document }}</p>
+            <br><p>Nombres:             {{ person.first_name }} {{ person.second_name }}</p>
+            <br><p>Apellidos:           {{ person.last_name}} {{ person.last_name_second }}</p>
+            <br><br>¿La información es correcta?
+            <form action="" method="POST" id="confirm_form">
+                {% csrf_token %}
+                {{ confirmation_form.as_p }}
+                <input type="submit" value="Si, la información es correcta" size="20">
+                <input type="submit" value="No, la información es errada" size="20" onclick="wrong();">
+            </form>
+        {% else %}
+            {% if MSG_NOBD %}
+                <hr>
+                <p><font color="FF0000">Respetado usuario, usted no se encuentra registrado en la base de datos de la Secretar&iacute;a Distrital de Salud. Puede acercarse a <a href="" target="none">cualquiera de los puntos de la Secretar&iacute;a</a> para solicitar la inclusi&oacute;n de sus datos</font></p>
+                <hr>
+            {% endif %}
+            {% if MSG_PYP %}
+                {% include "person.html" %}
+                <hr>
+                <p> <font color="FF0000">Respetado usuario, usted se encuentra registrado en la base de datos de la Secretaría Distrital de Salud pero se encuentra registrado en la Secretaría Distrital de Movilidad como con beneficio de Pico y Placa. Por esta razón, no pude gozar del beneficio del subsidio de discapacidad. Si la información aquí reflejada es errada, por favor acerquese a <a href="">los puntos de la Secretaría de Movilidad</a> para solicitar la corrección de sus datos.</font></p>
+                <hr>
+            {% endif %}
+            {% if MSG_VHCL %}
+                {% include "person.html" %}
+                <hr>
+                <p><font color="ff0000">Respetado usuario, usted se encuentra registrado en la base de datos de la Secretar&iacute;a Distrital de Salud pero se encuentra registrado en la Secretar&iacute;a Distrital de Movilidad como propietario de {{ vehicles_count }} veh&iacute;culo{{ vehicles_count|pluralize }} de placas {% for plate in plates %}{{ plate }} {% endfor %}. Por esta raz&oacute;n, no pude gozar del beneficio del subsidio de discapacidad. Si la informaci&oacute;n aqu&iacute; reflejada es errada, por favor acerquese a <a href="" target="none">cualquiera de los puntos de la Secretar&iacute;a de Movilidad</a> para solicitar la correcci&oacute;n de sus datos.</font></p>
+                <hr>
+            {% endif %}
+            {% if MSG_CHC %}
+                {% include "person.html" %}
+                <hr>
+                <p><font color="ff0000">Usted decidió ser excluido de este beneficio. Si quiere cambiar este estado puede acercarse <a href="">los puntos de la Secretaría de Movilidad</a></font></p>
+                <hr>
+            {% endif %}
+            {% if MSG_DTH %}
+                {% include "person.html" %}
+                <hr>
+                <p><font color="ff0000">Respetado usuario, usted aparece registrado en la base de datos de la Secretaría de Salud como fallecido. Puede acercarse a <a href="" target="none">un punto de su localidad de la Secretar&iacute;a de Salud</a> para corregir su registro</font></p>
+                <hr>
+            {% endif %}
+            {% if MSG_ID %}
+                <hr>
+                <p><font color="ff0000">Respetado usuario, por favor acerquese a <a href="" target="none">un punto de su localidad de la Secretar&iacute;a de Salud</a> para solicitar la correcci&oacute;n de sus datos.</font></p>
+                <hr>
+            {% endif %}
+            {% if search_form %}
+            <p>A través de este sitio, usted puede consultar si aplica para obtener su tarjeta tullave con el
+            perfil de discapacidad. Lo invitamos a visitar nuestra página de  <a href=""> preguntas frecuentes</a>  para conocer más sobre este beneficio.</p>
+            <br>
+            <h1>Por favor, digite su identificación</h1>
+                <form action="{% url  'index' %}" method="post">
+                    {% csrf_token %}
+                    {{ search_form.as_p }}
+                   <input type="submit" value="Buscar" size="20">
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+
+
+
+
+{% block content %}
+ 
+<b style="color:#f00"> error en el archivo de datos que esta cargando revise:</b>
+<br></br>
+<h2 style="color:#000"> <b>1)</b>El encabezado debe venir el siguiente orden sin campos adicionales, menos campos y tampoco 
+    encabezados entre ellos:<h2>
+
+
+        <br></br>
+        <br></br>
+        <p align="center">Ejemplo de la estructura del archivo</p>
+        <br></br>
+<table class="default">
+
+    <tr>
+  
+      <td><span style="border-image: initial; border: 1px solid blue;">dia_registro</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">mes_registro</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">año_registro</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">primer_nombre</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">primer_apellido</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">segundo_nombre</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">segundo_apellido</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">id_tipo_doc_ind</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">numero_documento</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">fecha_nacimiento</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">direccion</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">id_localidad_ind</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">barrio</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">fallecidos</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">Id_novedad</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">Placa</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">OT</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">id_tipo_doc_ANTES</span></td>
+      <td><span style="border-image: initial; border: 1px solid blue;">numero_identificacion_ANTES</span></td>
+
+    </tr>
+  
+    <tr>
+      <td>11</td>
+      <td>10</td>
+      <td>2005</td>
+      <td>PABLO</td>
+      <td>PEDRO</td>
+      <td>MARTINEZ</td>
+      <td>FLOREZ</td>
+      <td>CC</td>
+      <td>12345678</td>
+      <td>1/03/1994</td>
+      <td>KR0#0-0</td>
+      <td>11</td>
+      <td>BR</td>
+      <td>0</td>
+      <td>3</td>
+      <td>XXX</td>
+      <td>0</td>
+      <td>12345</td>
+      <td>12345</td>
+      
+  
+    </tr>
+  
+  </table>
+
+
+
+<h1 style="color:#000"> <b> 2)</b> los campos no deberian contener caracteres especiales como tildes ya que se utilizan mayusculas </h1>
+<br></br>
+<h1 style="color:#000"> De presentar alguno de los anteriores remitase al manual de ayuda para intentar solucionar esto</h1>
+<br></br>
+<form action="{% url 'archivo' %}">
+<input type="submit" value="regresar">
+</form>
+   
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="tl_content">
+	<div id="tl_Intleft">
+	{% if MSG %}
+		<p class="error">El nombre de usuario o contraseña no coinciden.</p>
+	{% endif %}
+	<form action="/buscar/" method="get">
+		{% csrf_token %}
+		<p>
+			<label for="username">Usuario:</label>
+			<input type="text" name="username" value="" id="username">
+		</p>
+		<p>
+			<label for="password">Contraseña:</label>
+			<input type="password" name="password" value="" id="password">
+			
+		</p>
+		<p>
+			<label for="grupo">Grupo:</label>
+			<input type="grupo" name="grupo" value="" id="grupo">
+			
+		</p>
+		<p>
+			<label>&nbsp;</label>
+			<input type="submit" value="Ingresar" />	
+		</p>
+	</form>
+	</div> 
+	{% if respuesta %}
+		<label for="">Fallo con los datos de ingreso al Directorio activo:</label>
+	{% endif %}
+		<label for=""></label>
+	   
+</div>
+{% endblock %}
